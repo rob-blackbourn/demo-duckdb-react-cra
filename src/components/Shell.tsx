@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 
+import { PACKAGE_NAME, PACKAGE_VERSION } from '@duckdb/duckdb-wasm-shell'
 import * as duckdbWasmShell from '@duckdb/duckdb-wasm-shell'
 
 import { useDuckDB } from '@jetblack/duckdb-react'
 
 import 'xterm/css/xterm.css'
 
-const URL =
-  'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm-shell@1.28.1-dev106.0/dist/shell_bg.wasm'
+const JSDELIVR_URL = 'https://cdn.jsdelivr.net/npm'
+const SHELL_PKG_URL = `${JSDELIVR_URL}/${PACKAGE_NAME}@${PACKAGE_VERSION}`
+const SHELL_WASM_URL = `${SHELL_PKG_URL}/dist/shell_bg.wasm`
 
 export default function Shell() {
   const ref = React.useRef<HTMLDivElement | null>(null)
@@ -19,7 +21,7 @@ export default function Shell() {
     }
 
     const asyncFunc = async () => {
-      const response = await fetch(URL)
+      const response = await fetch(SHELL_WASM_URL)
       const buf = await response.arrayBuffer()
 
       duckdbWasmShell.embed({
