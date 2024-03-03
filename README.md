@@ -1,6 +1,6 @@
 # demo-duckdb-react-cra
 
-An example of using @jetblack/duckdb-react with create react app.
+An example of using [@jetblack/duckdb-react](https://github.com/rob-blackbourn/jetblack-duckdb-react) with create react app.
 
 There are some differences between this demo and the vite demo.
 
