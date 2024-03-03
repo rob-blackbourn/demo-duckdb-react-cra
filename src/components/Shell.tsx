@@ -22,17 +22,16 @@ export default function Shell() {
 
     const asyncFunc = async () => {
       const response = await fetch(SHELL_WASM_URL)
-      const buf = await response.arrayBuffer()
 
       duckdbWasmShell.embed({
-        shellModule: buf,
+        shellModule: response,
         container: ref.current!,
         resolveDatabase: async () => db
       })
     }
 
     asyncFunc().catch(error => console.error(error))
-  }, [db, loading, error, ref.current])
+  }, [db, loading, error])
 
   return (
     <div
